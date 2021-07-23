@@ -23,9 +23,6 @@ package daemon
 import (
 	"log"
 	"net"
-	"os"
-	"os/signal"
-	"syscall"
 
 	"github.com/servian/TechChallengeApp/ui"
 )
@@ -48,14 +45,5 @@ func Run(cfg *Config) error {
 
 	ui.Start(cfg.UI, listener)
 
-	waitForSignal()
-
 	return nil
-}
-
-func waitForSignal() {
-	ch := make(chan os.Signal)
-	signal.Notify(ch, syscall.SIGINT, syscall.SIGTERM)
-	s := <-ch
-	log.Printf("Got signal: %v, exiting.", s)
 }

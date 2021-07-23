@@ -54,7 +54,7 @@ func Start(cfg Config, listener net.Listener) {
 	uiHandler(cfg, uiRouter)
 
 	http.Handle("/", mainRouter)
-	go server.Serve(listener)
+	server.Serve(listener)
 }
 
 func healthcheckHandler(cfg Config) http.Handler {
